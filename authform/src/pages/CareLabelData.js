@@ -1,16 +1,17 @@
 import Header from "../components/Header";
 import CareLabel from "../components/CareLabelData";
 
-export default function CareLabelPage(){
-    return(
-        <>
-            <Header
-                heading="Welcome To Label Online Order System"
-                paragraph="Enter the details below form "
-                
-                />
+export default function CareLabelPage() {
+  return (
+    <>
+      <Header
+      // heading="Login to your account"
+      // paragraph="Go to Login"
+      // linkName="Login"
+      // linkUrl="/signup"
+      />
 
-            <CareLabel/>
-        </>
-    )
+      <CareLabel />
+    </>
+  );
 }
