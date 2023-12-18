@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignupPage from "./pages/SignUp";
 import LoginPage from "./pages/Login";
-import CareLabel from "./components/CareLabelData";
+import CareLabelPage from "./pages/careLabel";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
-            <Route path="/carelabel" element={<CareLabel />} />
+            <Route path="/careLabel" element={<CareLabelPage />} />
           </Routes>
         </BrowserRouter>
       </div>

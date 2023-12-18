@@ -2,28 +2,30 @@ import { useState } from "react";
 import { carelabelDataFields } from "../constants/formFields";
 import FormAction from "./FormAction";
 import Input from "./Input";
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const fields = carelabelDataFields;
 let fieldsState = {};
 
 fields.forEach((field) => (fieldsState[field.id] = ""));
-//-------------------------------------------------CareLabel.js-------------------------------------------------
-export default function CareLabel() {
-  //const history = useNavigate();
-  const [createLblState, setcreateLblState] = useState(fieldsState);
-  const [loading, setLoading] = useState(false);
-  //const [error, setError] = useState(null);
 
-  const handleChange = (e) =>
-    setcreateLblState({ ...createLblState, [e.target.id]: e.target.value });
+//-------------------------------------------------Signup.js-------------------------------------------------
+export default function CareLabel() {
+  const [careLabelState, setcareLabelState] = useState(fieldsState);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleChange = (e) => {
+    setcareLabelState({ ...careLabelState, [e.target.id]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate password and confirmation match
+
     setLoading(true);
   };
-
-  // Handle Signup API Integration here
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -32,7 +34,7 @@ export default function CareLabel() {
           <Input
             key={field.id}
             handleChange={handleChange}
-            value={createLblState[field.id]}
+            value={careLabelState[field.id]}
             labelText={field.labelText}
             labelFor={field.labelFor}
             id={field.id}
@@ -42,6 +44,9 @@ export default function CareLabel() {
             placeholder={field.placeholder}
           />
         ))}
+
+        {/* Display error message if there's an error */}
+        {error && <p className="text-red-500">{error}</p>}
 
         {/* Pass loading state and display appropriate button text */}
         <FormAction
