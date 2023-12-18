@@ -2,18 +2,18 @@ import { useState } from "react";
 import { carelabelDataFields } from "../constants/formFields";
 import FormAction from "./FormAction";
 import Input from "./Input";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 const fields = carelabelDataFields;
 let fieldsState = {};
 
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
-//-------------------------------------------------Signup.js-------------------------------------------------
+//-------------------------------------------------carelabel.js-------------------------------------------------
 export default function CareLabel() {
   const [careLabelState, setcareLabelState] = useState(fieldsState);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  //const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setcareLabelState({ ...careLabelState, [e.target.id]: e.target.value });
@@ -46,7 +46,7 @@ export default function CareLabel() {
         ))}
 
         {/* Display error message if there's an error */}
-        {error && <p className="text-red-500">{error}</p>}
+        {/* {error && <p className="text-red-500">{error}</p>} */}
 
         {/* Pass loading state and display appropriate button text */}
         <FormAction
