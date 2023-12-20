@@ -9,6 +9,7 @@ export default function SignupPage() {
         paragraph="Already have an account? "
         linkName="Login"
         linkUrl="/"
+        src="https://ik.imagekit.io/priyanjan/New%20Folder/add-friend.png?updatedAt=1703061150325"
       />
       <Signup />
     </>
