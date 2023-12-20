@@ -8,23 +8,38 @@ const fields = carelabelDataFields;
 let fieldsState = {};
 
 fields.forEach((field) => (fieldsState[field.id] = ""));
-
-//-------------------------------------------------carelabel.js-------------------------------------------------
+//-------------------------------------------------Signup.js-------------------------------------------------
 export default function CareLabel() {
-  const [careLabelState, setcareLabelState] = useState(fieldsState);
+  //const history = useNavigate();
+  const [carelblState, setCarelblState] = useState(fieldsState);
   const [loading, setLoading] = useState(false);
-  //const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
 
-  const handleChange = (e) => {
-    setcareLabelState({ ...careLabelState, [e.target.id]: e.target.value });
-  };
+  const handleChange = (e) =>
+    setCarelblState({ ...carelblState, [e.target.id]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate password and confirmation match
+    try {
+      setLoading(true);
 
-    setLoading(true);
+      // Your asynchronous code goes here
+      // For example, an API call or any other async operation
+      // await someAsyncOperation();
+
+      // If you have more code to execute after the async operation, you can include it here
+    } catch (error) {
+      // Handle the error appropriately
+      setError("care data not submitted");
+      console.error("Error occurred:", error);
+
+      // You might want to set an error state or display an error message to the user
+      // setErrorState(true);
+    } finally {
+      // This block will be executed whether there is an error or not
+      setLoading(false);
+    }
   };
 
   return (
@@ -34,7 +49,7 @@ export default function CareLabel() {
           <Input
             key={field.id}
             handleChange={handleChange}
-            value={careLabelState[field.id]}
+            value={carelblState[field.id]}
             labelText={field.labelText}
             labelFor={field.labelFor}
             id={field.id}
@@ -46,12 +61,12 @@ export default function CareLabel() {
         ))}
 
         {/* Display error message if there's an error */}
-        {/* {error && <p className="text-red-500">{error}</p>} */}
+        {error && <p className="text-red-500">{error}</p>}
 
         {/* Pass loading state and display appropriate button text */}
         <FormAction
           handleSubmit={handleSubmit}
-          text={loading ? "Submitting..." : "Submit"}
+          text={loading ? "Signing up..." : "Signup"}
         />
       </div>
     </form>
