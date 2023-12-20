@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { loginFields } from '../constants/formFields';
-import FormAction from './FormAction';
-import FormExtra from './FormExtra';
-import Input from './Input';
-import { auth } from '../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { loginFields } from "../constants/formFields";
+import FormAction from "./FormAction";
+import FormExtra from "./FormExtra";
+import Input from "./Input";
+import { auth } from "../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const fields = loginFields;
 let fieldsState = {};
-fields.forEach((field) => (fieldsState[field.id] = ''));
-
+fields.forEach((field) => (fieldsState[field.id] = ""));
+//-------------------------------------------------Login.js-------------------------------------------------
 export default function Login() {
   const history = useNavigate();
   const [loginState, setLoginState] = useState(fieldsState);
@@ -27,13 +27,17 @@ export default function Login() {
 
     try {
       // Use async/await for better error handling and to wait for the login to complete
-      await loginWithEmailAndPassword(auth, loginState['email-address'], loginState['password']);
-      console.log('Login Successful');
+      await loginWithEmailAndPassword(
+        auth,
+        loginState["email-address"],
+        loginState["password"]
+      );
+      console.log("Login Successful");
       // Additional logic after successful login (e.g., redirect)
-      history('/CareLabel')
+      history("/careLabel");
     } catch (error) {
       console.error(error);
-      setError('Invalid email or password. Please try again.');
+      setError("Invalid email or password. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -69,7 +73,10 @@ export default function Login() {
       {error && <p className="text-red-500">{error}</p>}
 
       {/* Pass loading state and display appropriate button text */}
-      <FormAction handleSubmit={handleSubmit} text={loading ? 'Logging in...' : 'Login'} />
+      <FormAction
+        handleSubmit={handleSubmit}
+        text={loading ? "Logging in..." : "Login"}
+      />
     </form>
   );
 }
