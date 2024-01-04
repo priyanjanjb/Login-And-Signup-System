@@ -2,8 +2,8 @@ import { useState } from "react";
 import { carelabelDataFields } from "../constants/formFields";
 import FormAction from "./FormAction";
 import Input from "./Input";
+//import DbConnect from "../config/DbConnect";
 //import { useNavigate } from "react-router-dom";
-
 const fields = carelabelDataFields;
 let fieldsState = {};
 
@@ -23,7 +23,12 @@ export default function CareLabel() {
 
     try {
       setLoading(true);
+      const strkNum = carelblState["Strock-Number"];
+      const cntrkNum = carelblState["Contract-Number"];
+      const season = carelblState["Season"];
+      const tdeptNum = carelblState["Tdept"];
 
+      console.log(strkNum, cntrkNum, season, tdeptNum);
       // Your asynchronous code goes here
       // For example, an API call or any other async operation
       // await someAsyncOperation();
