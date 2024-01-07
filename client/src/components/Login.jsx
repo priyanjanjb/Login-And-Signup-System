@@ -6,6 +6,7 @@ import Input from "./Input";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const fields = loginFields;
 let fieldsState = {};
@@ -24,6 +25,11 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    try {
+      const responce = await axios.get("http://localhost:5000/api");
+    } catch (error) {
+      console.log("not connected to server");
+    }
 
     try {
       // Use async/await for better error handling and to wait for the login to complete
