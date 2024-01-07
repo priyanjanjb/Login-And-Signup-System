@@ -26,7 +26,7 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const responce = await axios.get("http://localhost:5000/api");
+      const responce = await axios.get("http://localhost:5000/Login");
     } catch (error) {
       console.log("not connected to server");
     }

@@ -4,6 +4,7 @@ import FormAction from "./FormAction";
 import Input from "./Input";
 //import DbConnect from "../config/DbConnect";
 //import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const fields = carelabelDataFields;
 let fieldsState = {};
 
@@ -20,30 +21,23 @@ export default function CareLabel() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
-      setLoading(true);
-      const strkNum = carelblState["Strock-Number"];
-      const cntrkNum = carelblState["Contract-Number"];
-      const season = carelblState["Season"];
-      const tdeptNum = carelblState["Tdept"];
-
-      console.log(strkNum, cntrkNum, season, tdeptNum);
-      // Your asynchronous code goes here
-      // For example, an API call or any other async operation
-      // await someAsyncOperation();
-
-      // If you have more code to execute after the async operation, you can include it here
-    } catch (error) {
-      // Handle the error appropriately
-      setError("care data not submitted");
-      console.error("Error occurred:", error);
-
-      // You might want to set an error state or display an error message to the user
-      // setErrorState(true);
-    } finally {
-      // This block will be executed whether there is an error or not
+      const responce = await axios.get("http://localhost:5000/caredata", {
+        params: {
+          strkNum: carelblState["Strock-Number"],
+          cntrkNum: carelblState["Contract-Number"],
+          season: carelblState["Season"],
+          tdeptNum: carelblState["Tdept"],
+        },
+      });
+      console.log(responce);
       setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setError("somthing went wrong");
+    } finally {
+      console.log("done");
     }
   };
 
@@ -71,7 +65,7 @@ export default function CareLabel() {
         {/* Pass loading state and display appropriate button text */}
         <FormAction
           handleSubmit={handleSubmit}
-          text={loading ? "Signing up..." : "Signup"}
+          text={loading ? "Submitting..." : "Submit"}
         />
       </div>
     </form>
