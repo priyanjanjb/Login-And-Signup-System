@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const carelabelSchema = new mongoose.Schema({
-  strnum: {
-    type: Number,
+  strkNum: {
+    type: String,
     required: true,
   },
   contrctNum: {

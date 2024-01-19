@@ -1,32 +1,41 @@
 const router = require("express").Router();
 const CareLabelSchema = require("../model/CareLabelSchema");
 
-router.route("/").get(async (req, res) => {
-  console.log("route");
-  req.body;
+// router.post("/", (req,res)=>{
 
-  await addCareLabel(res);
+//   const strknum=req.body.strknum;
+//   const contrctNum=req.body.contrctNum;
+//   const season=req.body.season;
+//   const tdept=req.body.tdept;
+ 
+//   const newCareLable=new Carelabel({
+//     strknum,
+//     contrctNum,
+//     season,
+//     tdept,
+//   }).save().then(()=>{
+//       res.json("careLabel Added");
+//   }).catch((err)=>{
+//       console.log(err);
+//   })
+// })
 
-  async function addCareLabel(res) {
-    const careLabel = new CareLabelSchema({
-      strnum: "123",
-      contrctNum: "123",
-      season: "123",
-      tdept: "123",
-    });
+router.route("/").post(async (req, res) => {
+  const { strkNum, contrctNum, season, tdept } =  req.body;
 
-    careLabel
-      .save()
-      .then((result) => {
-        console.log(result);
-        res.send(result); // Sending the saved document as a response
-      })
-      .catch((err) => {
-        console.log("Not saved data\n", err);
-        res.status(500).send("Internal Server Error");
-      });
+    const careLabel =  new CareLabelSchema({
+      strkNum: strkNum,
+      contrctNum: contrctNum,
+      season: season,
+      tdept: tdept,
+    })
+    await careLabel.save().then(() => {
+      res.json("careLabel Added");
+    }).catch((err) => {
+      console.log(err);
+    })
   }
-});
+);
 
 router.route("/add").post((req, res) => {
   console.log("add");
