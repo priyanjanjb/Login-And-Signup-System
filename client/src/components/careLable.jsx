@@ -22,15 +22,17 @@ export default function CareLabel() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const data={
+      strkNum: carelblState["Strock-Number"],
+      contrctNum: carelblState["Contract-Number"],
+      season: carelblState["Season"],
+      tdept: carelblState["Tdept"],
+    }
+
+    console.log("data",data)
     try {
-      const responce = await axios.get("http://localhost:5000/caredata", {
-        params: {
-          strkNum: carelblState["Strock-Number"],
-          cntrkNum: carelblState["Contract-Number"],
-          season: carelblState["Season"],
-          tdeptNum: carelblState["Tdept"],
-        },
-      });
+      const responce = await axios.post("http://localhost:5000/route",data)            
+      
       console.log(responce);
       setLoading(false);
     } catch (error) {
