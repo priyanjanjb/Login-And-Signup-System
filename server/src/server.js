@@ -5,9 +5,11 @@ const axios = require("axios"); //send http request
 const bodyParser = require("body-parser"); //parse json data
 const mongoose = require("mongoose");
 const route = require("./routes/carelabelRoutes");
+require("dotenv").config();
+console.log(process.env.MONGO_DB_URI);
 
-const mongoDbUrl =
-  "mongodb+srv://priyanjanjb:v5eueYJfiBlVvU12@carelabel.gdkbswt.mongodb.net/Carelabel";
+// const mongoDbUrl =
+//   "mongodb+srv://priyanjanjb:v5eueYJfiBlVvU12@carelabel.gdkbswt.mongodb.net/Carelabel";
 const app = express();
 const PORT = 5000;
 
@@ -18,7 +20,7 @@ app.use(bodyParser.json());
 
 //connect to mongodb
 mongoose
-  .connect(mongoDbUrl)
+  .connect(process.env.MONGO_DB_URI)
   .then(() => {
     console.log("connected to mongodb");
   })
